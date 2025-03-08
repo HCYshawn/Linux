@@ -1,0 +1,8 @@
+fd: 3
+hello bit
+hello bit
+hello bit
+hello stdout
+hello stdout
+hello stdout
+hello stdout
