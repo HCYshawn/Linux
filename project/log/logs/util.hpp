@@ -21,12 +21,12 @@ namespace bitlog
 {
     namespace util
     {
-        class date
+        class Date
         {
             public:
             static size_t now(){return (size_t)time(nullptr);}
         };
-        class file
+        class File
         {
             public:
             // 获取文件大小
