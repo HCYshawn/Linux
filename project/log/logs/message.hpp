@@ -8,9 +8,12 @@
     6. 日志主体消息
     7. 日志器名称       (当前支持多日志器的同时使用)
 */
+#ifndef __M_MSG_H_
+#define __M_MSG_H_
 
 #include "level.hpp"
-#include<isotream>
+#include"util.hpp"
+#include<iostream>
 #include<string>
 #include<thread>
 
@@ -19,25 +22,27 @@ namespace bitlog
 {
     struct LogMsg
     {
-        size_t ctime;
-        LogLevel::value level;
+        time_t _ctime;
+        LogLevel::value _level;
         size_t _line;
         std::thread::id _tid;
         std::string _file;
         std::string _logger;
         std::string _payload;
 
-        LogMsg(LogLevel::value _level,
-            size_t _line,
-            const std::string& _file,
-            const std::string& _logger,
-            const std::string& _payload)
-            : ctime(util::Date::now()), 
-            level(level), 
-            line(line), 
+        LogMsg(LogLevel::value level,
+            size_t line,
+            const std::string& file,
+            const std::string& logger,
+            const std::string& msg)
+            : _ctime(util::Date::now()), 
+            _level(level), 
+            _line(line), 
             _tid(std::this_thread::get_id()), 
-            file(file), 
+            _file(file), 
             _logger(logger), 
-            _payload(payload) {}
-    }
+            _payload(msg) {}
+    };
 }
+
+#endif

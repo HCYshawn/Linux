@@ -1,10 +1,11 @@
 
-#ifdef __M_FMT_H__
+#ifndef __M_FMT_H__
 #define __M_FMT_H__
 
 #include"level.hpp"
 #include"message.hpp"
 #include<ctime>
+#include<memory>
 #include<vector>
 #include<cassert>
 
@@ -15,7 +16,7 @@ namespace bitlog
     {
     public:
         using ptr = std::shared_ptr<FormatItem>;
-        virtual void format(std::ostream& out,LogMsg &msg) = 0; 
+        virtual void format(std::ostream& out,const LogMsg &msg) = 0; 
     };
 
     //派生格式化子项子类--消息，等级，时间，文件名，行号，线程ID，日志器名，制表符，换行，其他
@@ -23,7 +24,7 @@ namespace bitlog
     class MsgFormatItem : public FormatItem
     {
     public:
-        void format(std::ostream& out,LogMsg &msg) override
+        void format(std::ostream& out,const LogMsg &msg) override
         {
             out << msg._payload;
         }
@@ -32,9 +33,9 @@ namespace bitlog
     class LevelFormatItem : public FormatItem
     {
     public:
-        void format(std::ostream& out,LogMsg &msg) override
+        void format(std::ostream& out,const LogMsg &msg) override
         {
-            out << LogLevel::toString(msg.level);
+            out << LogLevel::toString(msg._level);
         }
     };
 
@@ -43,7 +44,7 @@ namespace bitlog
     public:
         TimeFormatItem(const std::string& fmt = "%H:%M:%S")
             : _time_fmt(fmt) {}
-        void format(std::ostream& out,LogMsg &msg) override
+        void format(std::ostream& out,const LogMsg &msg) override
         {
             struct tm t;
             localtime_r(&msg._ctime,&t);
@@ -58,7 +59,7 @@ namespace bitlog
     class FileFormatItem : public FormatItem
     {
     public:
-        void format(std::ostream& out,LogMsg &msg) override
+        void format(std::ostream& out,const LogMsg &msg) override
         {
             out << msg._file;
         }
@@ -67,7 +68,7 @@ namespace bitlog
     class LineFormatItem : public FormatItem
     {
     public:
-        void format(std::ostream& out,LogMsg &msg) override
+        void format(std::ostream& out,const LogMsg &msg) override
         {
             out << msg._line;
         }
@@ -76,7 +77,7 @@ namespace bitlog
     class ThreadFormatItem : public FormatItem
     {
     public:
-        void format(std::ostream& out,LogMsg &msg) override
+        void format(std::ostream& out,const LogMsg &msg) override
         {
             out << msg._tid;
         }
@@ -85,7 +86,7 @@ namespace bitlog
     class LoggerFormatItem : public FormatItem
     {
     public:
-        void format(std::ostream& out,LogMsg &msg) override
+        void format(std::ostream& out,const LogMsg &msg) override
         {
             out << msg._logger;
         }
@@ -94,7 +95,7 @@ namespace bitlog
     class TabFormatItem : public FormatItem
     {
     public:
-        void format(std::ostream& out,LogMsg &msg) override
+        void format(std::ostream& out,const LogMsg &msg) override
         {
             out << "\t";
         }
@@ -103,7 +104,7 @@ namespace bitlog
     class NlineFormatItem : public FormatItem
     {
     public:
-        void format(std::ostream& out,LogMsg &msg) override
+        void format(std::ostream& out,const LogMsg &msg) override
         {
             out << "\n";
         }
@@ -114,9 +115,9 @@ namespace bitlog
     public:
         OtherFormatItem(const std::string& str)
             : _str(str) {}
-        void format(std::ostream& out,LogMsg &msg) override
+        void format(std::ostream& out,const LogMsg &msg) override
         {
-            out << "\n";
+            out << _str;
         }
     private:
         std::string _str;
@@ -137,13 +138,13 @@ namespace bitlog
     class Formatter
     {
     public:
-        Formatter(const std::string& pattern = "[%d]{%H:%M:%S}[%t][%c][%f:%l][%p]%T%m%n")
+        Formatter(const std::string& pattern = "[%d{%H:%M:%S}][%t][%c][%f:%l][%p]%T%m%n")
         :_pattern(pattern)
         {
             assert(parsePattern());
         }
         
-        void format(std::ostream&out,LogMsg&msg)
+        void format(std::ostream&out,const LogMsg&msg)
         {
             for(auto &item :_items)
             {
@@ -151,22 +152,23 @@ namespace bitlog
             }
         }
 
-        std::string format(LogMsg &msg)
+        const std::string format(const LogMsg &msg)
         {
-            std::strinfstream ss;
+            std::stringstream ss;
             format(ss,msg);
             return ss.str();
         }
 
+    private:
         bool parsePattern()
         {
             //对格式化规则字符串进行解析
             std::vector<std::pair<std::string,std::string>> fmt_order;
             size_t pos = 0;
+            std::string key,val;
             while(pos < _pattern.size())
             {
                 //处理原始字符串--判断是否是 %，不是就是原始字符
-                std::string key,val;
                 if(_pattern[pos]!= '%')
                 {
                     val.push_back(_pattern[pos++]);
@@ -184,7 +186,7 @@ namespace bitlog
                 //至此即表示 % 后边为格式化字符，代表原始字符串处理完毕
                 if(val.empty()==false)
                 {
-                    fmt_order.push_back(std:;make_pair("",val));
+                    fmt_order.push_back(std::make_pair("",val));
                     val.clear();
                 }
 
@@ -201,7 +203,7 @@ namespace bitlog
                 if(pos<_pattern.size()&&_pattern[pos] == '{')
                 {
                     pos+=1;//指向 { 之后，子规则的起始位置
-                    while(pos<_pattern.size()&&_pattern[pos]!+'}')
+                    while(pos<_pattern.size()&&_pattern[pos]!='}')
                     {
                         val.push_back(_pattern[pos++]);
                     }
@@ -218,7 +220,11 @@ namespace bitlog
                 key.clear();
                 val.clear();
             }
-            return ;
+            for(const auto& it : fmt_order)
+            {
+                _items.push_back(createItem(it.first, it.second));
+            }
+            return true;
         }
     private:
         FormatItem::ptr createItem(const std::string&key,const std::string&val)
@@ -259,10 +265,18 @@ namespace bitlog
             {
                 return std::make_shared<NlineFormatItem>();
             }
-            return std::make_shared<OtherFormatItem>(cal);
+            if(key == "") 
+            {
+                return std::make_shared<OtherFormatItem>(val);
+            }
+            std::cout<<"无对应的格式化字符：%"<<key<<std::endl;
+            abort();
+            return FormatItem::ptr();
         }
     private:
         std::string _pattern;//格式化字符串
         std::vector<FormatItem::ptr> _items;
     };
 }
+
+#endif
