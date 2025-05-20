@@ -1,33 +1,41 @@
-#include"util.hpp"
-#include"level.hpp"
-#include"message.hpp"
-#include"format.hpp"
-#include"sink.hpp"
-#include"logger.hpp"
+#include "util.hpp"
+#include "level.hpp"
+#include "message.hpp"
+#include "format.hpp"
+#include "sink.hpp"
+#include "logger.hpp"
 
 int main()
 {
-    std::string logger_name = "sync_logger";
-    bitlog::LogLevel::value limit = bitlog::LogLevel::value::WARN;
-    bitlog::Formatter::ptr fmt(new bitlog::Formatter("[%d{%H:%M:%S}][%c][%f:%l][%p]%T%m%n"));
+    // std::string logger_name = "sync_logger";
+    // bitlog::LogLevel::value limit = bitlog::LogLevel::value::WARN;
+    // bitlog::Formatter::ptr fmt(new bitlog::Formatter("[%d{%H:%M:%S}][%c][%f:%l][%p]%T%m%n"));
 
-    bitlog::LogSink::ptr stdout_lsp = bitlog::SinkFactory::create<bitlog::StdoutSink>();
-    bitlog::LogSink::ptr file_lsp = bitlog::SinkFactory::create<bitlog::FileSink>("./logfile/test.log");
-    bitlog::LogSink::ptr roll_lsp = bitlog::SinkFactory::create<bitlog::RollBySizeSink>("./logfile/roll-",1024*1024);
+    // bitlog::LogSink::ptr stdout_lsp = bitlog::SinkFactory::create<bitlog::StdoutSink>();
+    // bitlog::LogSink::ptr file_lsp = bitlog::SinkFactory::create<bitlog::FileSink>("./logfile/test.log");
+    // bitlog::LogSink::ptr roll_lsp = bitlog::SinkFactory::create<bitlog::RollBySizeSink>("./logfile/roll-", 1024 * 1024);
 
-    std::vector<bitlog::LogSink::ptr> sinks = {stdout_lsp, file_lsp, roll_lsp};
-    bitlog::Logger::ptr logger(new bitlog::SyncLogger(logger_name, limit, fmt, sinks));
+    // std::vector<bitlog::LogSink::ptr> sinks = {stdout_lsp, file_lsp, roll_lsp};
+    // bitlog::Logger::ptr logger(new bitlog::SyncLogger(logger_name, limit, fmt, sinks));
 
-    logger->debug(__FILE__, __LINE__, "%s", "厕所日志");
-    logger->info(__FILE__, __LINE__, "%s", "厕所日志");
-    logger->warn(__FILE__, __LINE__, "%s", "厕所日志");
-    logger->error(__FILE__, __LINE__, "%s", "厕所日志");
-    logger->fatal(__FILE__, __LINE__, "%s", "厕所日志");
+    std::unique_ptr<bitlog::LoggerBuilder> builder(new bitlog::LocalLoggerBuilder());
+    builder->buildLoggerName("sync_logger");
+    builder->buildLoggerLevel(bitlog::LogLevel::value::WARN);
+    builder->buildFormmatter("%m%n");
+    builder->buildLoggerType(bitlog::LoggerType::LOGGER_SYNC);
+    builder->buildSink<bitlog::FileSink>("./logfile/test.log");
+    builder->buildSink<bitlog::RollBySizeSink>("./logfile/roll-", 1024 * 1024);
+    bitlog::Logger::ptr logger = builder->build();
 
+    logger->debug(__FILE__, __LINE__, "%s", "测试日志");
+    logger->info(__FILE__, __LINE__, "%s", "测试日志");
+    logger->warn(__FILE__, __LINE__, "%s", "测试日志");
+    logger->error(__FILE__, __LINE__, "%s", "测试日志");
+    logger->fatal(__FILE__, __LINE__, "%s", "测试日志");
 
     size_t cursize = 0;
     size_t count = 0;
-    while(cursize<1024*1024*10)
+    while (cursize < 1024 * 1024 * 10)
     {
         logger->fatal(__FILE__, __LINE__, "测试日志-%d", count++);
         cursize += 20;
