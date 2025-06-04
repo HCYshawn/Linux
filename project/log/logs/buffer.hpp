@@ -1,12 +1,15 @@
+#ifndef __M_BUF_H__
+#define __M_BUF_H__
+
 #include <vector>
 #include <cassert>
 #include "util.hpp"
 
 namespace bitlog
 {
-#define DEFAULT_BUFFER_SIZE (100 * 1024 * 1024)
-#define THRESHOLD_BUFFER_SIZE (80 * 1024 * 1024)
-#define INCREMENT_BUFFER_SIZE (10 * 1024 * 1024)
+#define DEFAULT_BUFFER_SIZE (10 * 1024 * 1024)
+#define THRESHOLD_BUFFER_SIZE (8 * 1024 * 1024)
+#define INCREMENT_BUFFER_SIZE (1 * 1024 * 1024)
     class Buffer
     {
     public:
@@ -33,7 +36,7 @@ namespace bitlog
         // 返回可读数据的地址
         const char *begin()
         {
-            return &_buffer[_writer_idx];
+            return &_buffer[_reader_idx];
         }
 
         // 返回可读数据的长度
@@ -79,7 +82,7 @@ namespace bitlog
             size_t new_size = 0;
             if (_buffer.size() < THRESHOLD_BUFFER_SIZE)
             {
-                new_size = _buffer.size() * 2; // 翻倍增长
+                new_size = _buffer.size() * 2 + len; // 翻倍增长
             }
             else
             {
@@ -101,3 +104,5 @@ namespace bitlog
         size_t _writer_idx; // 当前可写数据的指针
     };
 }
+
+#endif
