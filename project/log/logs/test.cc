@@ -1,11 +1,32 @@
-#include "util.hpp"
-#include "level.hpp"
-#include "message.hpp"
-#include "format.hpp"
-#include "sink.hpp"
-#include "logger.hpp"
-#include "buffer.hpp"
-#include "looper.hpp"
+#include "mlog.h"
+
+void test_log()
+{
+    // bitlog::Logger::ptr logger = bitlog::LoggerManager::getInstance().getLogger("async_logger");
+    // logger->debug("%s", "测试日志");
+    // logger->info("%s", "测试日志");
+    // logger->warn("%s", "测试日志");
+    // logger->error("%s", "测试日志");
+    // logger->fatal("%s", "测试日志");
+
+    // size_t count = 0;
+    // while (count < 500000)
+    // {
+    //     logger->fatal("测试日志-%d", count++);
+    // }
+    DEBUG("%s", "测试日志");
+    INFO("%s", "测试日志");
+    WARN("%s", "测试日志");
+    ERROR("%s", "测试日志");
+    FATAL("%s", "测试日志");
+
+    size_t count = 0;
+    while (count < 500000)
+    {
+        FATAL("测试日志-%d", count++);
+    }
+}
+
 int main()
 {
     // std::ifstream ifs("./logfile/test.log", std::ios::binary);
@@ -60,27 +81,18 @@ int main()
     // std::vector<bitlog::LogSink::ptr> sinks = {stdout_lsp, file_lsp, roll_lsp};
     // bitlog::Logger::ptr logger(new bitlog::SyncLogger(logger_name, limit, fmt, sinks));
 
-    std::unique_ptr<bitlog::LoggerBuilder> builder(new bitlog::LocalLoggerBuilder());
+    std::unique_ptr<bitlog::LoggerBuilder> builder(new bitlog::GlobalLoggerBuilder());
     builder->buildLoggerName("async_logger");
     builder->buildLoggerLevel(bitlog::LogLevel::value::WARN);
-    builder->buildFormmatter("[%c]%m%n");
+    builder->buildFormmatter("[%c][%f:%l]%m%n");
     builder->buildLoggerType(bitlog::LoggerType::LOGGER_ASYNC);
-    builder->buildSink<bitlog::FileSink>("./logfile/async.log");
     builder->buildEnableUnSafeAsync();
+    builder->buildSink<bitlog::FileSink>("./logfile/async.log");
+    builder->buildSink<bitlog::StdoutSink>();
+    builder->build();
+
+    test_log();
     // builder->buildSink<bitlog::RollBySizeSink>("./logfile/roll-", 1024 * 1024);
-    bitlog::Logger::ptr logger = builder->build();
-
-    logger->debug(__FILE__, __LINE__, "%s", "测试日志");
-    logger->info(__FILE__, __LINE__, "%s", "测试日志");
-    logger->warn(__FILE__, __LINE__, "%s", "测试日志");
-    logger->error(__FILE__, __LINE__, "%s", "测试日志");
-    logger->fatal(__FILE__, __LINE__, "%s", "测试日志");
-
-    size_t count = 0;
-    while (count < 500000)
-    {
-        logger->fatal(__FILE__, __LINE__, "测试日志-%d", count++);
-    }
 
     // bitlog::LogMsg msg(bitlog::LogLevel::value::INFO,53,"main.c","root","格式化测试...");
     // //bitlog::Formatter fmt("abc%%abc%g%g%g[%d{%H:%M:%S}] %m%n%g");

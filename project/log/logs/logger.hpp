@@ -19,6 +19,7 @@
 #include <cstdarg>
 #include <mutex>
 #include <sstream>
+#include <unordered_map>
 
 namespace bitlog
 {
@@ -33,7 +34,10 @@ namespace bitlog
                                                    _limit_level(level),
                                                    _formatter(formatter),
                                                    _sinks(sinks.begin(), sinks.end()) {}
-
+        const std::string &name()
+        {
+            return _logger_name;
+        }
         // 完成构造日志消息对象过程并进行格式化，得到格式化后的日志消息字符串然后进行落地输出
         void debug(const std::string &file, size_t line, const std::string &fmt, ...)
         {
@@ -305,6 +309,95 @@ namespace bitlog
                 return std::make_shared<AsyncLogger>(_logger_name, _limit_level, _formatter, _sinks, _looper_type);
             }
             return std::make_shared<SyncLogger>(_logger_name, _limit_level, _formatter, _sinks);
+        }
+    };
+
+    class LoggerManager
+    {
+    public:
+        static LoggerManager &getInstance()
+        {
+            // C++11后静态局部变量在编译层面实现了线程安全
+            // 当静态局部变量在没有构造完成之前，其他线程进入就会阻塞
+            static LoggerManager eton;
+            return eton;
+        }
+
+        void addLogger(Logger::ptr &logger)
+        {
+            if (hasLogger(logger->name()))
+                return;
+            std::unique_lock<std::mutex> lock(_mutex);
+            _loggers.insert(std::make_pair(logger->name(), logger));
+        }
+
+        bool hasLogger(const std::string &name)
+        {
+            std::unique_lock<std::mutex> lock(_mutex);
+            auto it = _loggers.find(name);
+            if (it == _loggers.end())
+            {
+                return false;
+            }
+            return true;
+        }
+
+        Logger::ptr getLogger(const std::string &name)
+        {
+            std::unique_lock<std::mutex> lock(_mutex);
+            auto it = _loggers.find(name);
+            if (it == _loggers.end())
+            {
+                return Logger::ptr();
+            }
+            return it->second;
+        }
+        Logger::ptr rootLogger()
+        {
+            return _root_logger;
+        }
+
+    private:
+        LoggerManager()
+        {
+            std::unique_ptr<bitlog::LoggerBuilder> builder(new bitlog::LocalLoggerBuilder());
+            builder->buildLoggerName("root");
+            _root_logger = builder->build();
+            _loggers.insert(std::make_pair("root", _root_logger));
+        }
+
+    private:
+        std::mutex _mutex;
+        Logger::ptr _root_logger; // 默认日志器
+        std::unordered_map<std::string, Logger::ptr> _loggers;
+    };
+
+    class GlobalLoggerBuilder : public LoggerBuilder
+    {
+    public:
+        Logger::ptr build() override
+        {
+            assert(!_logger_name.empty());
+            if (_formatter.get() == nullptr)
+            {
+                _formatter = std::make_shared<Formatter>();
+            }
+            if (_sinks.empty())
+            {
+                buildSink<StdoutSink>();
+            }
+            Logger::ptr logger;
+            if (_logger_type == LoggerType::LOGGER_ASYNC)
+            {
+
+                logger = std::make_shared<AsyncLogger>(_logger_name, _limit_level, _formatter, _sinks, _looper_type);
+            }
+            else
+            {
+                logger = std::make_shared<SyncLogger>(_logger_name, _limit_level, _formatter, _sinks);
+            }
+            LoggerManager::getInstance().addLogger(logger);
+            return logger;
         }
     };
 }
