@@ -202,11 +202,10 @@ namespace bitlog
     {
     public:
         AsyncLogger(const std::string &logger_name,
-                   LogLevel::value level,
-                   Formatter::ptr &formatter,
-                   std::vector<LogSink::ptr> &sinks,
-                   AsyncType looper_type
-                ) : Logger(logger_name, level, formatter, sinks) ,_looper(std::make_shared<AsyncLooper>(std::bind(&AsyncLogger::realLog,this,std::placeholders::_1),looper_type)){}
+                    LogLevel::value level,
+                    Formatter::ptr &formatter,
+                    std::vector<LogSink::ptr> &sinks,
+                    AsyncType looper_type) : Logger(logger_name, level, formatter, sinks), _looper(std::make_shared<AsyncLooper>(std::bind(&AsyncLogger::realLog, this, std::placeholders::_1), looper_type)) {}
 
         void log(const char *data, size_t len)
         {
@@ -240,12 +239,18 @@ namespace bitlog
     {
     public:
         LoggerBuilder() : _logger_type(LoggerType::LOGGER_SYNC),
-                          _limit_level(LogLevel::value::DEBUG)
+                          _limit_level(LogLevel::value::DEBUG),
+                          _looper_type(AsyncType::ASYNC_SAFE)
         {
         }
         void buildLoggerType(LoggerType type)
         {
             _logger_type = type;
+        }
+
+        void buildEnableUnSafeAsync()
+        {
+            _looper_type = AsyncType::ASUNC_UNSAFE;
         }
 
         void buildLoggerName(const std::string &name)
@@ -273,6 +278,7 @@ namespace bitlog
         virtual Logger::ptr build() = 0;
 
     protected:
+        AsyncType _looper_type;
         LoggerType _logger_type;
         std::string _logger_name;
         std::atomic<LogLevel::value> _limit_level;
@@ -296,8 +302,9 @@ namespace bitlog
             }
             if (_logger_type == LoggerType::LOGGER_ASYNC)
             {
+                return std::make_shared<AsyncLogger>(_logger_name, _limit_level, _formatter, _sinks);
             }
-            return std::make_shared<SyncLogger>(_logger_name, _limit_level, _formatter, _sinks);
+            return std::make_shared<SyncLogger>(_logger_name, _limit_level, _formatter, _sinks, _looper_type);
         }
     };
 }
