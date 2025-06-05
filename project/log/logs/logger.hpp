@@ -302,9 +302,9 @@ namespace bitlog
             }
             if (_logger_type == LoggerType::LOGGER_ASYNC)
             {
-                return std::make_shared<AsyncLogger>(_logger_name, _limit_level, _formatter, _sinks);
+                return std::make_shared<AsyncLogger>(_logger_name, _limit_level, _formatter, _sinks, _looper_type);
             }
-            return std::make_shared<SyncLogger>(_logger_name, _limit_level, _formatter, _sinks, _looper_type);
+            return std::make_shared<SyncLogger>(_logger_name, _limit_level, _formatter, _sinks);
         }
     };
 }

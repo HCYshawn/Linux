@@ -38,6 +38,7 @@ namespace bitlog
         {
             _stop = true;           // 修改退出标志为true
             _cond_con.notify_all(); // 唤醒所有工作线程
+            _thread.join();         // 等待工作线程退出
         }
 
         void push(const char *data, size_t len)
@@ -57,15 +58,19 @@ namespace bitlog
         // 线程入口函数，对消费缓冲区中的数据进行处理，处理完毕后，初始化缓冲区并交换缓冲区
         void threadEntry()
         {
-            while (!_stop)
+            while (1)
             {
                 // 1.判断生产缓冲区有无数据，有则交换，无则阻塞
                 // 为互斥锁设置一个生命周期，当缓冲区交换完毕解锁
                 {
                     std::unique_lock<std::mutex> lock(_mutex);
+                    // 退出标志被设置，且生产缓冲区已无数据，这时候再退出，否则可能会造成生产缓冲区有数据但没有完全处理
+                    if (_stop && _pro_buf.empty())
+                        break;
                     // 若当前是退出前被唤醒，或者有数据被唤醒，则返回真，继续向下运行，否则重新陷入休眠
                     _cond_con.wait(lock, [&]()
                                    { return _stop || !_pro_buf.empty(); });
+
                     _con_buf.swap(_pro_buf);
                     // 2.唤醒生产者
                     if (_looper_type == AsyncType::ASYNC_SAFE)
