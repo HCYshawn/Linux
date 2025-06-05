@@ -14,6 +14,7 @@
 #include "level.hpp"
 #include "format.hpp"
 #include "sink.hpp"
+#include "looper.hpp"
 #include <atomic>
 #include <cstdarg>
 #include <mutex>
@@ -195,6 +196,35 @@ namespace bitlog
                 sink->log(data, len);
             }
         }
+    };
+
+    class AsyncLogger : public Logger
+    {
+    public:
+        AsyncLogger(const std::string &logger_name,
+                   LogLevel::value level,
+                   Formatter::ptr &formatter,
+                   std::vector<LogSink::ptr> &sinks,
+                   AsyncType looper_type
+                ) : Logger(logger_name, level, formatter, sinks) ,_looper(std::make_shared<AsyncLooper>(std::bind(&AsyncLogger::realLog,this,std::placeholders::_1),looper_type)){}
+
+        void log(const char *data, size_t len)
+        {
+            _looper->push(data, len);
+        }
+
+        void realLog(Buffer &buf)
+        {
+            if (_sinks.empty())
+                return;
+            for (auto &sink : _sinks)
+            {
+                sink->log(buf.begin(), buf.readAbleSize());
+            }
+        }
+
+    private:
+        AsyncLooper::ptr _looper;
     };
 
     enum class LoggerType
