@@ -9,7 +9,7 @@
 #include <functional>
 #include <memory>
 
-namespace bitlog
+namespace logsys
 {
     using Functor = std::function<void(Buffer &)>;
     enum class AsyncType

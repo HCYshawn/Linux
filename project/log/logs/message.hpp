@@ -17,7 +17,7 @@
 #include <string>
 #include <thread>
 
-namespace bitlog
+namespace logsys
 {
     struct LogMsg
     {

@@ -6,7 +6,7 @@
 #ifndef __M_LEVEL_H__
 #define __M_LEVEL_H__
 
-namespace bitlog
+namespace logsys
 {
     class LogLevel
     {

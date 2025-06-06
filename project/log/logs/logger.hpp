@@ -21,7 +21,7 @@
 #include <sstream>
 #include <unordered_map>
 
-namespace bitlog
+namespace logsys
 {
     class Logger
     {
@@ -360,7 +360,7 @@ namespace bitlog
     private:
         LoggerManager()
         {
-            std::unique_ptr<bitlog::LoggerBuilder> builder(new bitlog::LocalLoggerBuilder());
+            std::unique_ptr<logsys::LoggerBuilder> builder(new logsys::LocalLoggerBuilder());
             builder->buildLoggerName("root");
             _root_logger = builder->build();
             _loggers.insert(std::make_pair("root", _root_logger));

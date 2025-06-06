@@ -5,7 +5,7 @@
 #include <cassert>
 #include "util.hpp"
 
-namespace bitlog
+namespace logsys
 {
 #define DEFAULT_BUFFER_SIZE (10 * 1024 * 1024)
 #define THRESHOLD_BUFFER_SIZE (8 * 1024 * 1024)

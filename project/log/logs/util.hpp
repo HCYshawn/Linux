@@ -17,7 +17,7 @@
 #include <cassert>
 #include <sys/stat.h>
 
-namespace bitlog
+namespace logsys
 {
     namespace util
     {

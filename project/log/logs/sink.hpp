@@ -12,7 +12,7 @@
 #include <memory>
 #include <cassert>
 
-namespace bitlog
+namespace logsys
 {
     class LogSink
     {
