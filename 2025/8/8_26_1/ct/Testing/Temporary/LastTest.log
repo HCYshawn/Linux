@@ -1,0 +1,19 @@
+Start testing: Aug 26 16:05 CST
+----------------------------------------------------------
+1/1 Testing: testAdd
+1/1 Test: testAdd
+Command: "/root/my/local/2025/8/8_26_1/ct/main"
+Directory: /root/my/local/2025/8/8_26_1/ct
+"testAdd" start time: Aug 26 16:05 CST
+Output:
+----------------------------------------------------------
+main: /root/my/local/2025/8/8_26_1/main.cpp:7: int main(): Assertion `1 + 2 == 4' failed.
+<end of output>
+Test time =   0.44 sec
+----------------------------------------------------------
+Test Failed.
+"testAdd" end time: Aug 26 16:05 CST
+"testAdd" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Aug 26 16:05 CST
