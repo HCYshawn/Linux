@@ -1,0 +1,7 @@
+/root/my/local/2026/5m/5_16_1/build/CMakeFiles/hello.dir
+/root/my/local/2026/5m/5_16_1/build/CMakeFiles/edit_cache.dir
+/root/my/local/2026/5m/5_16_1/build/CMakeFiles/rebuild_cache.dir
+/root/my/local/2026/5m/5_16_1/build/CMakeFiles/list_install_components.dir
+/root/my/local/2026/5m/5_16_1/build/CMakeFiles/install.dir
+/root/my/local/2026/5m/5_16_1/build/CMakeFiles/install/local.dir
+/root/my/local/2026/5m/5_16_1/build/CMakeFiles/install/strip.dir
