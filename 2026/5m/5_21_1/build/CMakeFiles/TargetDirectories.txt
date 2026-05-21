@@ -1,0 +1,8 @@
+/root/my/local/2026/5m/5_21_1/build/CMakeFiles/edit_cache.dir
+/root/my/local/2026/5m/5_21_1/build/CMakeFiles/rebuild_cache.dir
+/root/my/local/2026/5m/5_21_1/build/mymath/CMakeFiles/mymath.dir
+/root/my/local/2026/5m/5_21_1/build/mymath/CMakeFiles/edit_cache.dir
+/root/my/local/2026/5m/5_21_1/build/mymath/CMakeFiles/rebuild_cache.dir
+/root/my/local/2026/5m/5_21_1/build/app/CMakeFiles/app.dir
+/root/my/local/2026/5m/5_21_1/build/app/CMakeFiles/edit_cache.dir
+/root/my/local/2026/5m/5_21_1/build/app/CMakeFiles/rebuild_cache.dir
