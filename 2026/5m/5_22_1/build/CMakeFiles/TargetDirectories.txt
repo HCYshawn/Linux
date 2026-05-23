@@ -1,0 +1,10 @@
+/root/my/local/2026/5m/5_22_1/build/CMakeFiles/edit_cache.dir
+/root/my/local/2026/5m/5_22_1/build/CMakeFiles/rebuild_cache.dir
+/root/my/local/2026/5m/5_22_1/build/console_logger/CMakeFiles/edit_cache.dir
+/root/my/local/2026/5m/5_22_1/build/console_logger/CMakeFiles/rebuild_cache.dir
+/root/my/local/2026/5m/5_22_1/build/logger_interface/CMakeFiles/LoggerInterface.dir
+/root/my/local/2026/5m/5_22_1/build/logger_interface/CMakeFiles/edit_cache.dir
+/root/my/local/2026/5m/5_22_1/build/logger_interface/CMakeFiles/rebuild_cache.dir
+/root/my/local/2026/5m/5_22_1/build/app/CMakeFiles/app.dir
+/root/my/local/2026/5m/5_22_1/build/app/CMakeFiles/edit_cache.dir
+/root/my/local/2026/5m/5_22_1/build/app/CMakeFiles/rebuild_cache.dir
