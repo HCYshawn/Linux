@@ -1,0 +1,14 @@
+/root/my/local/2026/5m/5_26_1/build/CMakeFiles/edit_cache.dir
+/root/my/local/2026/5m/5_26_1/build/CMakeFiles/rebuild_cache.dir
+/root/my/local/2026/5m/5_26_1/build/addsub/CMakeFiles/addsub.dir
+/root/my/local/2026/5m/5_26_1/build/addsub/CMakeFiles/edit_cache.dir
+/root/my/local/2026/5m/5_26_1/build/addsub/CMakeFiles/rebuild_cache.dir
+/root/my/local/2026/5m/5_26_1/build/muldiv/CMakeFiles/muldiv.dir
+/root/my/local/2026/5m/5_26_1/build/muldiv/CMakeFiles/edit_cache.dir
+/root/my/local/2026/5m/5_26_1/build/muldiv/CMakeFiles/rebuild_cache.dir
+/root/my/local/2026/5m/5_26_1/build/calculator/CMakeFiles/calculator.dir
+/root/my/local/2026/5m/5_26_1/build/calculator/CMakeFiles/edit_cache.dir
+/root/my/local/2026/5m/5_26_1/build/calculator/CMakeFiles/rebuild_cache.dir
+/root/my/local/2026/5m/5_26_1/build/app/CMakeFiles/app.dir
+/root/my/local/2026/5m/5_26_1/build/app/CMakeFiles/edit_cache.dir
+/root/my/local/2026/5m/5_26_1/build/app/CMakeFiles/rebuild_cache.dir

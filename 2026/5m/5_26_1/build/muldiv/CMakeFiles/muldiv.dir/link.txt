@@ -1,0 +1,2 @@
+/usr/bin/ar qc libmuldiv.a CMakeFiles/muldiv.dir/src/muldiv.cpp.o
+/usr/bin/ranlib libmuldiv.a

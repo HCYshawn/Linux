@@ -1,0 +1,2 @@
+/usr/bin/ar qc libaddsub.a CMakeFiles/addsub.dir/src/addsub.cpp.o
+/usr/bin/ranlib libaddsub.a
