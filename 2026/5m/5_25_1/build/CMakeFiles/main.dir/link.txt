@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/main.dir/main.cpp.o -o main   -L/interface  -Wl,-rpath,/interface:/root/my/local/2026/5m/5_25_1/build/bin bin/libadd.so.1.2.3 -ljsoncpp 
