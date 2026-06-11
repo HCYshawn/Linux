@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/main.dir/main.cpp.o -o ../bin/main  -Wl,-rpath,/home/ubuntu/my/26/6m/6_11_1/build/lib ../lib/libMyMath.so 

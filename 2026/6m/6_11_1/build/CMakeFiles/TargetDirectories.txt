@@ -1,0 +1,8 @@
+/home/ubuntu/my/26/6m/6_11_1/build/CMakeFiles/edit_cache.dir
+/home/ubuntu/my/26/6m/6_11_1/build/CMakeFiles/rebuild_cache.dir
+/home/ubuntu/my/26/6m/6_11_1/build/my_lib/CMakeFiles/MyMath.dir
+/home/ubuntu/my/26/6m/6_11_1/build/my_lib/CMakeFiles/edit_cache.dir
+/home/ubuntu/my/26/6m/6_11_1/build/my_lib/CMakeFiles/rebuild_cache.dir
+/home/ubuntu/my/26/6m/6_11_1/build/app/CMakeFiles/main.dir
+/home/ubuntu/my/26/6m/6_11_1/build/app/CMakeFiles/edit_cache.dir
+/home/ubuntu/my/26/6m/6_11_1/build/app/CMakeFiles/rebuild_cache.dir
