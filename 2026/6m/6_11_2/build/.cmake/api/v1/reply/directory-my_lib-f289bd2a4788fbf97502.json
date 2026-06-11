@@ -1,0 +1,130 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"my_lib/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 23,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 29,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 40,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 54,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"lib/libMyMath.so.1.2.3",
+				"lib/libMyMath.so.20"
+			],
+			"targetId" : "MyMath::@ab1e3d45447ab9a7bb2e",
+			"targetIndex" : 0,
+			"targetInstallNamelink" : "skip",
+			"type" : "target"
+		},
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"lib/libMyMath.so"
+			],
+			"targetId" : "MyMath::@ab1e3d45447ab9a7bb2e",
+			"targetIndex" : 0,
+			"targetInstallNamelink" : "only",
+			"type" : "target"
+		},
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"cxxModuleBmiTarget" : 
+			{
+				"id" : "MyMath::@ab1e3d45447ab9a7bb2e",
+				"index" : 0
+			},
+			"destination" : "lib",
+			"type" : "cxxModuleBmi"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "include/math",
+			"paths" : 
+			[
+				{
+					"from" : "my_lib/include",
+					"to" : "."
+				}
+			],
+			"type" : "directory"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "lib/cmake/MyMath",
+			"exportName" : "MyMathTargets",
+			"exportTargets" : 
+			[
+				{
+					"id" : "MyMath::@ab1e3d45447ab9a7bb2e",
+					"index" : 0
+				}
+			],
+			"paths" : 
+			[
+				"my_lib/CMakeFiles/Export/b2d85ac64e33bf59e655644855d88846/MyMathTargets.cmake"
+			],
+			"type" : "export"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "Unspecified",
+			"destination" : "lib/cmake/MyMath",
+			"paths" : 
+			[
+				"build/my_lib/MyMathConfig.cmake"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "my_lib",
+		"source" : "my_lib"
+	}
+}

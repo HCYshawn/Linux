@@ -1,0 +1,13 @@
+/home/ubuntu/my/26/6m/6_11_2/build/CMakeFiles/edit_cache.dir
+/home/ubuntu/my/26/6m/6_11_2/build/CMakeFiles/rebuild_cache.dir
+/home/ubuntu/my/26/6m/6_11_2/build/CMakeFiles/list_install_components.dir
+/home/ubuntu/my/26/6m/6_11_2/build/CMakeFiles/install.dir
+/home/ubuntu/my/26/6m/6_11_2/build/CMakeFiles/install/local.dir
+/home/ubuntu/my/26/6m/6_11_2/build/CMakeFiles/install/strip.dir
+/home/ubuntu/my/26/6m/6_11_2/build/my_lib/CMakeFiles/MyMath.dir
+/home/ubuntu/my/26/6m/6_11_2/build/my_lib/CMakeFiles/edit_cache.dir
+/home/ubuntu/my/26/6m/6_11_2/build/my_lib/CMakeFiles/rebuild_cache.dir
+/home/ubuntu/my/26/6m/6_11_2/build/my_lib/CMakeFiles/list_install_components.dir
+/home/ubuntu/my/26/6m/6_11_2/build/my_lib/CMakeFiles/install.dir
+/home/ubuntu/my/26/6m/6_11_2/build/my_lib/CMakeFiles/install/local.dir
+/home/ubuntu/my/26/6m/6_11_2/build/my_lib/CMakeFiles/install/strip.dir
