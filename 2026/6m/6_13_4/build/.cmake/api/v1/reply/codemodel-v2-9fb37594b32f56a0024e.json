@@ -1,0 +1,104 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.18"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "my_lib",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-my_lib-6d64c5d02c941a46b94e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.18"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "my_lib",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "app",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-app-6eff1952fb9b6a606635.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.18"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "app",
+					"targetIndexes" : 
+					[
+						1
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2
+					],
+					"name" : "InstallMyMath",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "MyMath::@ab1e3d45447ab9a7bb2e",
+					"jsonFile" : "target-MyMath-b6fdef09b1e76580f446.json",
+					"name" : "MyMath",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "main::@5f5a17c01335469806cb",
+					"jsonFile" : "target-main-e87f839f3c7542189041.json",
+					"name" : "main",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/ubuntu/my/26/6m/6_13_4/build",
+		"source" : "/home/ubuntu/my/26/6m/6_13_4"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

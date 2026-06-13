@@ -1,0 +1,5 @@
+/home/ubuntu/my/26/6m/6_13_4/build/_CPack_Packages/Linux/TZ/InstallMyMath-0.1.1-Linux/lib/libMyMath.so.1.2.3
+/home/ubuntu/my/26/6m/6_13_4/build/_CPack_Packages/Linux/TZ/InstallMyMath-0.1.1-Linux/lib/libMyMath.so.20
+/home/ubuntu/my/26/6m/6_13_4/build/_CPack_Packages/Linux/TZ/InstallMyMath-0.1.1-Linux/lib/libMyMath.so
+/home/ubuntu/my/26/6m/6_13_4/build/_CPack_Packages/Linux/TZ/InstallMyMath-0.1.1-Linux/include/math.h
+/home/ubuntu/my/26/6m/6_13_4/build/_CPack_Packages/Linux/TZ/InstallMyMath-0.1.1-Linux/bin/main
