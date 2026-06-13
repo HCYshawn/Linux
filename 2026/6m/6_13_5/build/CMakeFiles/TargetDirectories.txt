@@ -1,0 +1,5 @@
+/home/ubuntu/my/26/6m/6_13_5/build/CMakeFiles/generate_protobuf.dir
+/home/ubuntu/my/26/6m/6_13_5/build/CMakeFiles/MyProto.dir
+/home/ubuntu/my/26/6m/6_13_5/build/CMakeFiles/main.dir
+/home/ubuntu/my/26/6m/6_13_5/build/CMakeFiles/edit_cache.dir
+/home/ubuntu/my/26/6m/6_13_5/build/CMakeFiles/rebuild_cache.dir

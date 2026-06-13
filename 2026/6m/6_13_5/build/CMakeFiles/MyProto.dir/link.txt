@@ -1,0 +1,2 @@
+/usr/bin/ar qc libMyProto.a CMakeFiles/MyProto.dir/pb/person.pb.cc.o
+/usr/bin/ranlib libMyProto.a
