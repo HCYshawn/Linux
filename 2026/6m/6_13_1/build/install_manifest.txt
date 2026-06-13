@@ -1,0 +1,5 @@
+/usr/local/lib/libEasyLog.a
+/usr/local/include/easylog/easylog.h
+/usr/local/lib/cmake/EasyLog/EasyLogTargets.cmake
+/usr/local/lib/cmake/EasyLog/EasyLogTargets-noconfig.cmake
+/usr/local/lib/cmake/EasyLog/EasyLogConfig.cmake

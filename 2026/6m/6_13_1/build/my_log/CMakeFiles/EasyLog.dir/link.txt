@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../lib/libEasyLog.a CMakeFiles/EasyLog.dir/src/easylog.cpp.o
+/usr/bin/ranlib ../lib/libEasyLog.a
