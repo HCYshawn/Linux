@@ -1,0 +1,10 @@
+hello world
+fd: 3
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hello
