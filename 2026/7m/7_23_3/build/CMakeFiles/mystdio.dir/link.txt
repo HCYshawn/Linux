@@ -1,0 +1,2 @@
+/usr/bin/ar qc libmystdio.a CMakeFiles/mystdio.dir/mystdio.cpp.o
+/usr/bin/ranlib libmystdio.a
