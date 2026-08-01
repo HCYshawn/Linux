@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/ubuntu/my/26/8m/8_1_2/build",
+  "command": "/usr/bin/c++  -I/home/ubuntu/my/26/8m/8_1_2 -std=gnu++17 -o CMakeFiles/process_pool.dir/main.cpp.o -c /home/ubuntu/my/26/8m/8_1_2/main.cpp",
+  "file": "/home/ubuntu/my/26/8m/8_1_2/main.cpp",
+  "output": "CMakeFiles/process_pool.dir/main.cpp.o"
+}
+]
