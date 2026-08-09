@@ -1,0 +1,4 @@
+/home/ubuntu/my/26/8m/8_9_2/build/CMakeFiles/sever.dir
+/home/ubuntu/my/26/8m/8_9_2/build/CMakeFiles/client.dir
+/home/ubuntu/my/26/8m/8_9_2/build/CMakeFiles/edit_cache.dir
+/home/ubuntu/my/26/8m/8_9_2/build/CMakeFiles/rebuild_cache.dir
