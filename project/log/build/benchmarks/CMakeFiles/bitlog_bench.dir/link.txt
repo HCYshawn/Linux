@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/bitlog_bench.dir/bench.cc.o -o ../bin/bitlog_bench 

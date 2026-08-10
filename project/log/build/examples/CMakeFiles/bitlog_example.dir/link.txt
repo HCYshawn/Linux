@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/bitlog_example.dir/test.cc.o -o ../bin/bitlog_example 
