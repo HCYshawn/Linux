@@ -1,0 +1,4 @@
+/home/ubuntu/my/26/8m/8_11_2/build/CMakeFiles/mykill.dir
+/home/ubuntu/my/26/8m/8_11_2/build/CMakeFiles/testSig.dir
+/home/ubuntu/my/26/8m/8_11_2/build/CMakeFiles/edit_cache.dir
+/home/ubuntu/my/26/8m/8_11_2/build/CMakeFiles/rebuild_cache.dir
