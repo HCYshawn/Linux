@@ -20,7 +20,7 @@ int main()
     std::unique_ptr<logsys::LoggerBuilder> builder(new logsys::GlobalLoggerBuilder());
     builder->buildLoggerName("async_logger");
     builder->buildLoggerLevel(logsys::LogLevel::value::DEBUG);
-    builder->buildFormmatter("[%c][%f:%l][%p]%m%n");
+    builder->buildFormatter("[%c][%f:%l][%p]%m%n");
     builder->buildLoggerType(logsys::LoggerType::LOGGER_SYNC);
     builder->buildSink<logsys::FileSink>("./logfile/sync.log");
     builder->buildSink<logsys::RollBySizeSink>("./logfile/roll-sync-by-size", 1024 * 1024);

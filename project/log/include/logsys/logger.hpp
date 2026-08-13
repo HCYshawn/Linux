@@ -267,6 +267,11 @@ namespace logsys
             _limit_level = level;
         }
 
+        void buildFormatter(const std::string &pattern)
+        {
+            _formatter = logsys::Formatter::ptr(new logsys::Formatter(pattern));
+        }
+
         void buildFormmatter(const std::string &pattern)
         {
             _formatter = std::make_shared<Formatter>(pattern);

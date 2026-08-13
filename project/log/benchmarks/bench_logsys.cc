@@ -62,7 +62,7 @@ void sync_bench()
     std::cout << "**************************同步日志器测试**************************" << std::endl;
     std::unique_ptr<logsys::LoggerBuilder> builder(new logsys::GlobalLoggerBuilder());
     builder->buildLoggerName("sync_logger");
-    builder->buildFormmatter("%m%n");
+    builder->buildFormatter("%m%n");
     builder->buildLoggerType(logsys::LoggerType::LOGGER_SYNC);
     builder->buildSink<logsys::FileSink>("./logfile/sync.log");
     builder->build();
@@ -80,7 +80,7 @@ void async_bench()
     std::cout << "**************************异步日志器测试**************************" << std::endl;
     std::unique_ptr<logsys::LoggerBuilder> builder(new logsys::GlobalLoggerBuilder());
     builder->buildLoggerName("async_logger");
-    builder->buildFormmatter("%m%n");
+    builder->buildFormatter("%m%n");
     builder->buildLoggerType(logsys::LoggerType::LOGGER_ASYNC);
     // builder->buildEnableUnSafeAsync(); // 启用非安全模式，排除实际落地时间
     builder->buildSink<logsys::FileSink>("./logfile/async.log");

@@ -84,7 +84,7 @@ int main()
     std::unique_ptr<logsys::LoggerBuilder> builder(new logsys::GlobalLoggerBuilder());
     builder->buildLoggerName("async_logger");
     builder->buildLoggerLevel(logsys::LogLevel::value::WARN);
-    builder->buildFormmatter("[%c][%f:%l]%m%n");
+    builder->buildFormatter("[%c][%f:%l]%m%n");
     builder->buildLoggerType(logsys::LoggerType::LOGGER_ASYNC);
     builder->buildEnableUnSafeAsync();
     builder->buildSink<logsys::FileSink>("./logfile/async.log");
