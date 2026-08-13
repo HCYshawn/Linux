@@ -1,7 +1,7 @@
-add_executable(bitlog_bench
+add_executable(logsys_bench
     bench_logsys.cc
 )
 
-target_link_libraries(bitlog_bench PRIVATE
-    bitlog
+target_link_libraries(logsys_bench PRIVATE
+    logsys::logsys
 )
