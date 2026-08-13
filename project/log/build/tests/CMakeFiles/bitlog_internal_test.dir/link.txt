@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/bitlog_internal_test.dir/internal_test.cc.o -o ../bin/bitlog_internal_test 
