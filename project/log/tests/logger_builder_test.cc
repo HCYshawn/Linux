@@ -14,16 +14,16 @@ void test_log()
     // {
     //     logger->fatal("测试日志-%d", count++);
     // }
-    DEBUG("%s", "测试日志");
-    INFO("%s", "测试日志");
-    WARN("%s", "测试日志");
-    ERROR("%s", "测试日志");
-    FATAL("%s", "测试日志");
+    LOGSYS_DEBUG("%s", "测试日志");
+    LOGSYS_INFO("%s", "测试日志");
+    LOGSYS_WARN("%s", "测试日志");
+    LOGSYS_ERROR("%s", "测试日志");
+    LOGSYS_FATAL("%s", "测试日志");
 
     size_t count = 0;
     while (count < 500000)
     {
-        FATAL("测试日志-%d", count++);
+        LOGSYS_FATAL("测试日志-%d", count++);
     }
 }
 

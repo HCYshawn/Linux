@@ -27,7 +27,7 @@ void bench(const std::string &logger_name, size_t thr_count, size_t msg_count, s
             //5. 开始循环写日志
             for (int j = 0; j < msg_ptr_thr;j++)
             {
-                logger->fatal("%s", msg.c_str());
+                LOGSYS_LOGGER_FATAL(logger, "%s", msg.c_str());
 
             }
             //6.线程函数内部结束计时
