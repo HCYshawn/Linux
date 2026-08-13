@@ -13,6 +13,9 @@ option(LOGSYS_BUILD_TESTS "Build logsys tests" OFF)
 
 find_package(Threads REQUIRED)
 
+include(GNUInstallDirs)
+include(CMakePackageConfigHelpers)
+
 add_library(logsys INTERFACE)
 add_library(logsys::logsys ALIAS logsys)
 
@@ -47,3 +50,38 @@ if(LOGSYS_BUILD_TESTS)
     enable_testing()
     add_subdirectory(tests)
 endif()
+
+
+
+install(TARGETS logsys
+    EXPORT logsysTargets
+    INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+)
+
+install(DIRECTORY include/
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+)
+
+install(EXPORT logsysTargets
+    FILE logsysTargets.cmake
+    NAMESPACE logsys::
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/logsys
+)
+
+configure_package_config_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/logsysConfig.cmake.in
+    ${CMAKE_CURRENT_BINARY_DIR}/logsysConfig.cmake
+    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/logsys
+)
+
+write_basic_package_version_file(
+    ${CMAKE_CURRENT_BINARY_DIR}/logsysConfigVersion.cmake
+    VERSION ${PROJECT_VERSION}
+    COMPATIBILITY SameMajorVersion
+)
+
+install(FILES
+    ${CMAKE_CURRENT_BINARY_DIR}/logsysConfig.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/logsysConfigVersion.cmake
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/logsys
+)
