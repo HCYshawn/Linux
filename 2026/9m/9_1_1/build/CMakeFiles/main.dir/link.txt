@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/main.dir/main.cpp.o -o main   -L/home/ubuntu/my/26/9m/9_1_1/BlockQueue.hpp  -L/home/ubuntu/my/26/9m/9_1_1/Task.hpp  -Wl,-rpath,/home/ubuntu/my/26/9m/9_1_1/BlockQueue.hpp:/home/ubuntu/my/26/9m/9_1_1/Task.hpp -lpthread 
