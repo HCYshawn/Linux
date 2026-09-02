@@ -1,0 +1,90 @@
+#pragma once
+
+#include <iostream>
+#include <vector>
+#include "Sem.hpp"
+#include "Mutex.hpp"
+
+static const int gcap = 5;
+
+using namespace SemModule;
+using namespace MutexModule;
+
+template <typename T>
+class RingQueue
+{
+public:
+    RingQueue(int cap = gcap)
+        : _cap(cap),
+          _rq(cap),
+          _blank_sem(cap),
+          _p_step(0),
+          _data_sem(0),
+          _c_step(0)
+    {
+    }
+
+    void Equeue(const T &in)
+    {
+        // 生产者
+
+        // 1. 申请信号量，即空位置信号量
+        _blank_sem.P();
+
+        {
+            //_pmutex.Lock();
+            LockGuard lockguard(_pmutex);
+            // 2. 生产
+            _rq[_p_step] = in;
+            // 3. 更新下标
+            ++_p_step;
+            // 4. 维持环形特性
+            _p_step %= _cap;
+
+            //_pmutex.Unlock();
+        }
+        _data_sem.V();
+    }
+
+    void Pop(T *out)
+    {
+
+        // 消费者
+        // 1. 申请信号量，即数据信号量
+        _data_sem.P();
+        {
+            LockGuard lockguard(_cmutex);
+            //_cmutex.Lock();
+
+            // 2. 生产
+            *out = _rq[_c_step];
+            // 3. 更新下标
+            ++_c_step;
+            // 4. 维持环形特性
+            _c_step %= _cap;
+
+            //_cmutex.Unlock();
+        }
+        _blank_sem.V();
+    }
+
+    ~RingQueue()
+    {
+    }
+
+private:
+    std::vector<T> _rq;
+    int _cap;
+
+    // 生产者
+    Sem _blank_sem;
+    int _p_step;
+
+    // 消费者
+    Sem _data_sem;
+    int _c_step;
+
+    // 维护多生产多消费，两把锁
+    Mutex _cmutex;
+    Mutex _pmutex;
+};
