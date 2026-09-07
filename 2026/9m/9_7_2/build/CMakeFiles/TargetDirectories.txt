@@ -1,0 +1,4 @@
+/home/ubuntu/my/26/9m/9_7_2/build/CMakeFiles/udpserver.dir
+/home/ubuntu/my/26/9m/9_7_2/build/CMakeFiles/udpclient.dir
+/home/ubuntu/my/26/9m/9_7_2/build/CMakeFiles/edit_cache.dir
+/home/ubuntu/my/26/9m/9_7_2/build/CMakeFiles/rebuild_cache.dir
