@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/udpclient.dir/UdpClient.cpp.o -o udpclient  -lpthread 
