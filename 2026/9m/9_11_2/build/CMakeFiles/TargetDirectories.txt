@@ -1,0 +1,4 @@
+/home/ubuntu/my/26/9m/9_11_2/build/CMakeFiles/tcpserver.dir
+/home/ubuntu/my/26/9m/9_11_2/build/CMakeFiles/tcpclient.dir
+/home/ubuntu/my/26/9m/9_11_2/build/CMakeFiles/edit_cache.dir
+/home/ubuntu/my/26/9m/9_11_2/build/CMakeFiles/rebuild_cache.dir
