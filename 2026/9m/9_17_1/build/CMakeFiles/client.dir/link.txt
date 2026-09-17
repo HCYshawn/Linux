@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/client.dir/TcpClient.cpp.o -o client  -ljsoncpp 
